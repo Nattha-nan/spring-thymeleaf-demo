@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>spring-thymeleaf-demo</artifactId>
+	<artifactId>demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-thymeleaf-demo</name>
+	<name>demo</name>
 	<description/>
 	<url/>
 	<licenses>
