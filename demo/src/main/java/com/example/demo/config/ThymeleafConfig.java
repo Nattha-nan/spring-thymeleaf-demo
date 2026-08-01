@@ -12,7 +12,7 @@ public class ThymeleafConfig {
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
-        resolver.setPrefix("classpath:/custom-templates/"); // โฟลเดอร์ที่กำหนดเอง
+        resolver.setPrefix("classpath:/my-templates/"); // โฟลเดอร์ที่กำหนดเอง
         resolver.setSuffix(".html");
         resolver.setTemplateMode("HTML");
         resolver.setCharacterEncoding("UTF-8");
@@ -34,5 +34,48 @@ public class ThymeleafConfig {
         viewResolver.setCharacterEncoding("UTF-8");
         viewResolver.setOrder(1); // ลำดับความสำคัญ ถ้ามีหลาย ViewResolver ใน context เดียวกัน
         return viewResolver;
+    }
+
+    @Bean
+    public SpringResourceTemplateResolver secondTemplateResolver() {
+
+        SpringResourceTemplateResolver resolver =
+                new SpringResourceTemplateResolver();
+
+        resolver.setPrefix("classpath:/templates/");
+        resolver.setSuffix(".html");
+        resolver.setTemplateMode("HTML");
+        resolver.setCharacterEncoding("UTF-8");
+        resolver.setCacheable(false);
+
+        return resolver;
+    }
+
+    @Bean
+    public SpringTemplateEngine secondTemplateEngine(
+            SpringResourceTemplateResolver secondTemplateResolver) {
+
+        SpringTemplateEngine engine =
+                new SpringTemplateEngine();
+
+        engine.setTemplateResolver(secondTemplateResolver);
+
+        return engine;
+    }
+
+    @Bean
+    public ThymeleafViewResolver secondViewResolver(
+            SpringTemplateEngine secondTemplateEngine) {
+
+        ThymeleafViewResolver resolver =
+                new ThymeleafViewResolver();
+
+        resolver.setTemplateEngine(secondTemplateEngine);
+
+        resolver.setCharacterEncoding("UTF-8");
+
+        resolver.setOrder(2);
+
+        return resolver;
     }
 }

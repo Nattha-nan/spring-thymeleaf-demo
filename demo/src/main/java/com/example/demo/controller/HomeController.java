@@ -9,7 +9,24 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("message", "Hello from Thymeleaf with a custom ViewResolver!");
-        return "home"; // ไม่ใช่ path ไฟล์ แค่ "ชื่อ view" เชิงตรรกะเท่านั้น
+
+        model.addAttribute(
+                "message",
+                "Hello, Natthanan Boodsadee!"
+        );
+
+        model.addAttribute(
+                "studentId",
+                "673380037-1"
+        );
+
+        return "home";
     }
+
+    @GetMapping("/about")
+    public String about(Model model){
+
+        return "about";
+    }
+
 }
